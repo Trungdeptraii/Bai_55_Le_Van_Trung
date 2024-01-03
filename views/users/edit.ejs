@@ -1,0 +1,22 @@
+<h1>Chỉnh sửa thông tin người dùng</h1>
+<form action="/users/edit/<%= user.id %>" method="post">
+    <div class="mb-3">
+        <label for="">Tên</label>
+        <input type="text" name="name" class="form-control" placeholder="Tên..." value= "<%= req?.old?.name|| user.name%>" autofocus>
+    </div>
+    <div class="mb-3">
+        <label for="">Email</label>
+        <input type="text" name="email" class="form-control" placeholder="Email..." value="<%= req?.old?.email || user.email%>">
+        <%- req?.errors?.email ? `<span class="text-danger">${req?.errors?.email}</span>` : ""%>
+
+    </div>
+    <div class="mb-3">
+        <label for="">Trạng Thái</label>
+        <select name="status" class="form-select">
+            <option value="0" <%= !user.status  ? 'selected' : '' %>>Chưa kích hoạt</option>
+            <option value="1" <%= user.status ? 'selected' : '' %>>Kích hoạt</option>
+        </select>
+    </div>
+    <button class="btn btn-primary">Thay đổi</button>
+    <a href="/users" class="btn btn-warning">Quay lại</a>
+</form>
